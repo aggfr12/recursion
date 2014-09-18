@@ -8,4 +8,6 @@ var getElementsByClassName = function(className){
   var child = document.childNodes;
   var result = [];
   var classes = [];
+
+  for(var i=0; i<child.length; i++){}
 };
