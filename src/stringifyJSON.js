@@ -17,4 +17,12 @@ var stringifyJSON = function(obj) {
 		return obj;
 	}
 
+	if(typeof obj === 'undefined'){
+		return undefined;
+	}
+
+	if(typeof obj === 'function'){
+		return undefined;
+	}
+
 };
