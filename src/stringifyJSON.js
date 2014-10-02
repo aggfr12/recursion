@@ -4,25 +4,33 @@
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
 
-	if(typeof obj === 'boolean'){
+	if(typeof obj === 'boolean') {
 		return obj.toString();
 	}
 
-	if(typeof obj === 'number'){
-		return String(obj);
+	if(typeof obj === 'number') {
+		return obj.toString();
 	}
 
-	if(typeof obj === 'string'){
+	if(typeof obj === 'string') {
 		obj = '"' + obj + '"';
 		return obj;
 	}
 
-	if(typeof obj === 'undefined'){
+	if(typeof obj === 'undefined') {
 		return undefined;
 	}
 
-	if(typeof obj === 'function'){
+	if(typeof obj === 'function') {
 		return undefined;
+	}
+
+	if(Array.isArray(obj)) {
+		var arr = [];
+		for(var i=0; i<obj.length; i++) {
+			arr.push(stringifyJSON(obj[i])); 
+		}
+		return '[' + arr ']';
 	}
 
 };
