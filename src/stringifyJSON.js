@@ -26,11 +26,45 @@ var stringifyJSON = function(obj) {
 	}
 
 	if(Array.isArray(obj)) {
-		var arr = [];
+		var arrStr = '[';
 		for(var i=0; i<obj.length; i++) {
-			arr.push(stringifyJSON(obj[i])); 
+			if(typeof obj[i] === 'function' || typeof obj[i] === 'undefined') {
+				arrStr += 'null,';
+			}
+			else {
+			arrStr += stringifyJSON(obj[i]) + ','; 
+			}
 		}
-		return '[' + arr ']';
+		arrStr = arrStr.slice(0,arrStr.length-1);
+		arrStr += ']';
+		return arrStr;
 	}
 
+	if(typeof obj === 'object') {
+		var objStr = '{';
+		for(var key in obj) {
+			if(typeof obj[key] == 'function' || obj[key] === undefined) {
+				objStr += 'null,';
+			}
+			else {
+				objStr += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
+			}
+		}
+		objStr = objStr.slice(0,objStr.length-1);
+		objStr += '}'
+		return objStr;
+	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
