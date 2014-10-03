@@ -13,16 +13,25 @@ var getElementsByClassName = function(className){
   		result.push(body);
     }
 
-    function getElement(elements){
+    function getElement(elementCheck){
   
-  		for(var i=0; i<elements.length; i++){
-  			var child = elements[i].childNodes;
-  			var classList = elements[i].classList;
+		if(elementCheck.classList.contains(className)) {
+  			result.push(body);
+  		
+  		for(var i=0; i<elementCheck.length; i++){
+  			var child = elementCheck[i].childNodes;
+  			var classList = elementCheck[i].classList;
 
-  			if(classList[i] === className) {
-  				result.push(elements[i]);
+  			if(classList === className) {
+  				result.push(elementCheck[i]);
+  			}
+
+  			for(var j=0; j<child.length; j++) {
+  				getElement(child[j]);
   			}
   		}
   	}
-  
+
+  	getElement(body);
+  	return result;
 };
