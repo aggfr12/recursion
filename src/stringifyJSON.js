@@ -50,14 +50,15 @@ var stringifyJSON = function(obj) {
 		var objStr = '{';
 		for(var key in obj) {
 			if(typeof obj[key] == 'function' || obj[key] === undefined) {
-				objStr += 'null,';
+				//objStr += 'null,';
+				return '{}';
 			}
 			else {
 				objStr += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
 			}
 		}
-		if(objStr > 1) {
-		objStr = objStr.slice(0,objStr.length-1);
+		if(objStr[objStr.length-1] === ','){
+			objStr = objStr.slice(0,objStr.length-1);
 		}
 
 		objStr += '}'
