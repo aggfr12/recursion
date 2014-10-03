@@ -39,7 +39,9 @@ var stringifyJSON = function(obj) {
 			arrStr += stringifyJSON(obj[i]) + ','; 
 			}
 		}
-		arrStr = arrStr.slice(0,arrStr.length-1);
+		if(obj.length > 0) {
+			arrStr = arrStr.slice(0,arrStr.length-1);
+		}
 		arrStr += ']';
 		return arrStr;
 	}
