@@ -17,12 +17,16 @@ var stringifyJSON = function(obj) {
 		return obj;
 	}
 
-	if(typeof obj === 'undefined') {
+	if(typeof obj === 'function') {
 		return undefined;
 	}
 
-	if(typeof obj === 'function') {
+	if(obj === undefined) {
 		return undefined;
+	}
+
+	if(obj === null) {
+		return 'null';
 	}
 
 	if(Array.isArray(obj)) {
@@ -50,7 +54,10 @@ var stringifyJSON = function(obj) {
 				objStr += stringifyJSON(key) + ':' + stringifyJSON(obj[key]) + ',';
 			}
 		}
+		if(objStr > 1) {
 		objStr = objStr.slice(0,objStr.length-1);
+		}
+
 		objStr += '}'
 		return objStr;
 	}
