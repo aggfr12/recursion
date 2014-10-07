@@ -50,7 +50,7 @@ var stringifyJSON = function(obj) {
 		var objStr = '{';
 		for(var key in obj) {
 			if(typeof obj[key] == 'function' || obj[key] === undefined) {
-				//objStr += 'null,';
+				//objStr += null;
 				return '{}';
 			}
 			else {
